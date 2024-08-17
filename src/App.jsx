@@ -4,9 +4,11 @@ import Navbar from "./ui/Navbar";
 
 function App() {
   return (
-    <div className=" h-screen conatainer bg-secondary-100">
+    <div className=" container bg-secondary-100">
       <Navbar />
-      <CategoryForm />
+      <div className="container max-w-screen-sm mx-auto p-4">
+        <CategoryForm />
+      </div>
     </div>
   );
 }
