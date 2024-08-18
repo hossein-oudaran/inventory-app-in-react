@@ -2,17 +2,20 @@ import { useState } from "react";
 import Input from "../../ui/Input";
 import toLocalDateShort from "../../utils/toLocalDateShort";
 
-function CategoryForm() {
+function CategoryForm({ setCategorie }) {
   const [isShowForm, setIsShowForm] = useState(false);
   const [categoryFormData, setCategoryFormData] = useState({
     title: "",
     description: "",
   });
-  const [categories, setCategorie] = useState([]);
 
   const handleChangeFormData = (e) => {
     const { name, value } = e.target;
-    setCategoryFormData({ ...categoryFormData, [name]: value });
+    setCategoryFormData({
+      ...categoryFormData,
+      [name]: value,
+      id: new Date().getTime(),
+    });
   };
 
   const handleCancelClick = (e) => {
@@ -64,7 +67,7 @@ function CategoryForm() {
         </div>
       </div>
       <button
-        className={`btn btn--primary ${isShowForm && "hidden"}`}
+        className={`btn btn--primary mb-8 ${isShowForm && "hidden"}`}
         onClick={() => setIsShowForm((prevState) => !prevState)}
       >
         Add new Category ?
