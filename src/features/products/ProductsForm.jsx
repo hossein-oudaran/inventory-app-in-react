@@ -4,13 +4,13 @@ import TextField from "../../ui/Text_Field";
 import RHFSelect from "../../ui/RHFSelect";
 import toLocalDateShort from "../../utils/toLocalDateShort";
 
-function ProductsForm({ categories }) {
+function ProductsForm({ categories, setProducts }) {
   const [productsFormData, setProductsFormData] = useState({
     title: "",
     quantity: "",
     category: "",
   });
-  const [products, setProducts] = useState([]);
+
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (product) => {
@@ -23,7 +23,7 @@ function ProductsForm({ categories }) {
       id: new Date().getTime(),
     };
     reset();
-    setProducts((prevState) => [...prevState, newProduct]);
+    setProducts((products) => [...products, newProduct]);
     setProductsFormData({ title: "", quantity: "", category: "" });
   };
   return (
@@ -60,7 +60,6 @@ function ProductsForm({ categories }) {
             register={register}
             options={categories}
             required
-            key={categories.id}
           />
         </div>
         <button type="submit" className="btn btn--primary mt-8">
