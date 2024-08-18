@@ -1,16 +1,4 @@
-import React, { useState } from "react";
-
-function Input({ name, label, type = "text" }) {
-  const [categoryFormData, setCategoryFormData] = useState({
-    title: "",
-    description: "",
-  });
-
-  const handleChangeFormData = (e) => {
-    const { name, value } = e.target;
-    setCategoryFormData({ ...categoryFormData, [name]: value });
-  };
-
+function Input({ name, label, type = "text", categoryFormData, onChange }) {
   return (
     <div>
       <div className="mb-4">
@@ -22,14 +10,14 @@ function Input({ name, label, type = "text" }) {
           type={type}
           name={name}
           className="p-3 bg-transparent rounded-xl border border-secondary-800 text-secondary-900 w-full  hover:border-primary-900"
-          onChange={handleChangeFormData}
+          onChange={onChange}
         />
       </div>
       <div>
         <TextAreaDesc
           label="Description"
           name="description"
-          onChange={handleChangeFormData}
+          onChange={onChange}
           categoryFormData={categoryFormData}
         />
       </div>
@@ -39,7 +27,7 @@ function Input({ name, label, type = "text" }) {
 
 export default Input;
 
-function TextAreaDesc({ name, label, value, categoryFormData, onChange }) {
+function TextAreaDesc({ name, label, onChange, categoryFormData }) {
   return (
     <div>
       <label className="mb-3 font-bold text-lg text-secondary-900">

@@ -1,5 +1,6 @@
 import "./App.css";
 import CategoryForm from "./features/category/CategoryForm";
+import ProductsForm from "./features/productsForm/ProductsForm";
 import Navbar from "./ui/Navbar";
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
       <Navbar />
       <div className="container max-w-screen-sm mx-auto p-4">
         <CategoryForm />
+        <ProductsForm />
       </div>
     </div>
   );

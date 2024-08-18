@@ -1,12 +1,33 @@
 import { useState } from "react";
 import Input from "../../ui/Input";
+import toLocalDateShort from "../../utils/toLocalDateShort";
 
 function CategoryForm() {
   const [isShowForm, setIsShowForm] = useState(false);
+  const [categoryFormData, setCategoryFormData] = useState({
+    title: "",
+    description: "",
+  });
+  const [categories, setCategorie] = useState([]);
+
+  const handleChangeFormData = (e) => {
+    const { name, value } = e.target;
+    setCategoryFormData({ ...categoryFormData, [name]: value });
+  };
 
   const handleCancelClick = (e) => {
     e.preventDefault();
     setIsShowForm(false);
+  };
+
+  const hanldeAddNewCategory = (e) => {
+    e.preventDefault();
+    const newCategory = {
+      ...categoryFormData,
+      createdAt: toLocalDateShort(new Date()),
+    };
+    setCategorie((prevState) => [...prevState, newCategory]);
+    setCategoryFormData({ title: "", description: "" });
   };
 
   return (
@@ -18,7 +39,13 @@ function CategoryForm() {
 
         <div className="">
           <form className="bg-secondary-200 p-4 rounded-xl">
-            <Input label="Title" name="title" />
+            <Input
+              categoryFormData={categoryFormData}
+              setCategoryFormData
+              label="Title"
+              name="title"
+              onChange={handleChangeFormData}
+            />
             <div className="flex justify-between  gap-x-4">
               <button
                 onClick={handleCancelClick}
@@ -26,7 +53,10 @@ function CategoryForm() {
               >
                 Cancel
               </button>
-              <button className="flex-auto p-3 btn btn--secondary">
+              <button
+                onClick={hanldeAddNewCategory}
+                className="flex-auto p-3 btn btn--secondary"
+              >
                 Add Category
               </button>
             </div>
