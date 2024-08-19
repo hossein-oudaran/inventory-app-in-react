@@ -13,6 +13,7 @@ function RHFSelect({ label, name, register, options, required }) {
         className="textField__input"
         // key={key}
       >
+        <option > Select a category</option>
         {options.map((option) => (
           <option key={option.title} value={option.id}>
             {option.title}

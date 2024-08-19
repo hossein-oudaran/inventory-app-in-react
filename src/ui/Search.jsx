@@ -10,7 +10,7 @@ function Search({ type = "text", name, label, value, onChange }) {
         value={value}
         type={type}
         name={name}
-        className=" p-2 rounded-xl border border-secondary-800 text-secondary-900"
+        className="bg-secondary-100 p-1 rounded-xl border border-secondary-500 text-secondary-900"
         onChange={onChange}
       />
     </div>

@@ -1,3 +1,4 @@
+import DarkModeToggle from "./DarkModeToggle";
 
 function Navbar() {
   return (
@@ -6,6 +7,9 @@ function Navbar() {
         <h1 className="md:text-xl text-sm font-bold text-secondary-900">
           Inventory App using tailwind & Js
         </h1>
+        <div>
+          <DarkModeToggle />
+        </div>
       </div>
     </div>
   );

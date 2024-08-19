@@ -3,10 +3,14 @@ import "./App.css";
 import CategoryForm from "./features/category/CategoryForm";
 import Navbar from "./ui/Navbar";
 import Products from "./pages/Products";
+import useLocalStorage from "./hooks/useLocalStorage";
+import { DarkModeProvider } from "./context/DarkModeContext";
 
 function App() {
-  const [products, setProducts] = useState([]);
-  const [categories, setCategorie] = useState([]);
+  // const [products, setProducts] = useState([]);
+  const [products, setProducts] = useLocalStorage("products", []);
+  // const [categories, setCategorie] = useState([]);
+  const [categories, setCategorie] = useLocalStorage("categories", []);
   const [sort, setSort] = useState("LATEST");
   const [searchValue, setSearchValue] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -43,21 +47,23 @@ function App() {
   };
 
   return (
-    <div className=" container bg-secondary-100">
-      <Navbar />
-      <div className="container max-w-screen-sm mx-auto p-4">
-        <CategoryForm setCategorie={setCategorie} />
-        <Products
-          products={filteredProducts}
-          setProducts={setProducts}
-          categories={categories}
-          sort={sort}
-          searchValue={searchValue}
-          onChangeSort={handleSort}
-          onSearchValue={handleSearchValue}
-        />
+    <DarkModeProvider>
+      <div className=" container bg-secondary-100">
+        <Navbar />
+        <div className="container max-w-screen-sm mx-auto p-4">
+          <CategoryForm setCategorie={setCategorie} />
+          <Products
+            products={filteredProducts}
+            setProducts={setProducts}
+            categories={categories}
+            sort={sort}
+            searchValue={searchValue}
+            onChangeSort={handleSort}
+            onSearchValue={handleSearchValue}
+          />
+        </div>
       </div>
-    </div>
+    </DarkModeProvider>
   );
 }
 
